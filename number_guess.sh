@@ -48,3 +48,18 @@ done
 
   echo -e "\nYou guessed it in $GUESS_COUNT tries. The secret number was $SECRET_NUMBER. Nice job!"
 
+#update stats in database
+if [[ -z $GAMES_PLAYED ]]
+then
+  GAMES_PLAYED=1
+else
+  (( GAMES_PLAYED++ ))
+fi
+
+if [[ $BEST_GAME -eq 0 || $GUESS_COUNT -lt $BEST_GAME ]]
+then
+  BEST_GAME=$GUESS_COUNT
+fi
+
+
+UPDATE_STATS=$($PSQL "update users set games_played = $GAMES_PLAYED, best_game = $BEST_GAME where user_id = $USER_ID")
