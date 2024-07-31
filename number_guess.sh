@@ -10,6 +10,7 @@ USER_ID=$($PSQL "select user_id from users where username='$USERNAME'")
 if [[ -z $USER_ID ]]
 then
   INSERT_USER_RESULT=$($PSQL "insert into users(username) values ('$USERNAME')")
+  USER_ID=$($PSQL "select user_id from users where username='$USERNAME'") 
   echo -e "\nWelcome, $USERNAME! It looks like this is your first time here."
 else
   USER_INFO=$($PSQL "select games_played, best_game from users where user_id=$USER_ID ")
