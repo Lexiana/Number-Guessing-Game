@@ -3,7 +3,17 @@ PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
 echo -e "\n~~~~~~ Number Guessing Game ~~~~~~\n"
 echo -e "\nEnter your username"
-read USERNAME
+
+while true
+do
+  read USERNAME
+  if [[ ${#USERNAME} -gt 22 ]]
+  then
+    echo -e "\nUsername must be 22 characters or less. Please try again."
+  else
+    break
+  fi
+done
 
 #get user_id
 USER_ID=$($PSQL "select user_id from users where username='$USERNAME'")
