@@ -2,7 +2,7 @@
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
 echo -e "\n~~~~~~ Number Guessing Game ~~~~~~\n"
-echo -e "\nEnter your username"
+echo -e "\nEnter your username:"
 
 while true
 do
